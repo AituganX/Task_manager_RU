@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { connect } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import TaskPage from "./components/TaskPage";
+import { createTask, editTask, removeTask } from "./actions";
 
-function App() {
+function App(props) {
+  const onStatusChange = (id, status) => {
+    props.dispatch(editTask(id, { status }));
+  };
+
+  // lets create a dispatch method so we can dispatch
+  const onCreateTask = ({ title, description }) => {
+    props.dispatch(createTask({ title, description }));
+  };
+
+  const onRemoveTask = (id) => {
+    props.dispatch(removeTask(id));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* we will need to pass the state of our store */}
+      <TaskPage
+        tasks={props.tasks}
+        onStatusChange={onStatusChange}
+        onCreateTask={onCreateTask}
+        onRemoveTask={onRemoveTask}
+      />
+    </>
   );
 }
 
-export default App;
+// this is new method
+const mapStateToProps = (state) => {
+  return {
+    // so we create an object tasks and we pass the value - the state gonna be the tasks
+    tasks: state.tasks,
+  };
+};
+
+export default connect(mapStateToProps)(App);
