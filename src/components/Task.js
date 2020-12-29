@@ -15,6 +15,10 @@ const Task = (props) => {
     props.onRemoveTask(props.task.id);
   }
 
+  function onChangeTask(e) {
+    props.onChangeTask(e.target.value);
+  }
+
   return (
     // we need to pass the state of our title and description
     <div className="border rounded">
@@ -41,6 +45,12 @@ const Task = (props) => {
             className="float-right m-2"
             style={{ color: "tomato", cursor: "pointer" }}
             onClick={() => onRemoveTask(props.task.id)}
+          />
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+            className="float-left m-2"
+            style={{ color: "tomato", cursor: "pointer" }}
+            onClick={() => onChangeTask(props.task.id)}
           />
         </p>
         {/* <FontAwesomeIcon

@@ -16,6 +16,11 @@ const TasksPage = (props) => {
     setDescription(e.target.value);
   };
 
+  const onChangeTask = (e, y) => {
+    setTitle(e.target.value);
+    setDescription(y.target.value);
+  };
+
   const formToggler = () => {
     showCardForm(!cardForm);
   };
@@ -49,6 +54,7 @@ const TasksPage = (props) => {
             tasks={statusTasks}
             onStatusChange={props.onStatusChange}
             onRemoveTask={props.onRemoveTask}
+            onChangeTask={props.onChangeTask}
           />
         </div>
       );

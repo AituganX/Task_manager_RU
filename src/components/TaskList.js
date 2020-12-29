@@ -14,6 +14,7 @@ const TaskList = (props) => {
           task={task}
           onStatusChange={props.onStatusChange}
           onRemoveTask={props.onRemoveTask}
+          onChangeTask={props.onChangeTask}
         />
       ))}
     </div>

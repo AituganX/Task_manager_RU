@@ -1,4 +1,4 @@
-import { CREATE_TASK, EDIT_TASK, REMOVE_TASK } from "../actions/types";
+import { CREATE_TASK, EDIT_TASK, REMOVE_TASK, CHANGE_TASK } from "../actions/types";
 
 const initialState = [
   // {
@@ -48,6 +48,11 @@ const tasks = (state = { tasks: initialState }, action) => {
       };
     }
     case CREATE_TASK: {
+      return {
+        tasks: state.tasks.concat(action.payload),
+      };
+    }
+    case CHANGE_TASK: {
       return {
         tasks: state.tasks.concat(action.payload),
       };

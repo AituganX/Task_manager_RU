@@ -1,4 +1,4 @@
-import { CREATE_TASK, EDIT_TASK, REMOVE_TASK } from "./types";
+import { CHANGE_TASK, CREATE_TASK, EDIT_TASK, REMOVE_TASK } from "./types";
 import uuid from "react-uuid";
 
 // first of all we go to actions and create an action
@@ -8,6 +8,16 @@ export const editTask = (id, params = {}) => {
     payload: {
       id,
       params,
+    },
+  };
+};
+
+export const changeTask = ({ title, description }) => {
+  return {
+    type: CHANGE_TASK,
+    payload: {
+      title,
+      description,
     },
   };
 };

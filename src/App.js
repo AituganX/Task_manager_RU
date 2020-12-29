@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TaskPage from "./components/TaskPage";
-import { createTask, editTask, removeTask } from "./actions";
+import { changeTask, createTask, editTask, removeTask } from "./actions";
 
 function App(props) {
   const onStatusChange = (id, status) => {
@@ -18,6 +18,10 @@ function App(props) {
     props.dispatch(removeTask(id));
   };
 
+  const onChangeTask = ({ title, description }) => {
+    props.dispatch(changeTask({ title, description }));
+  };
+
   return (
     <>
       {/* we will need to pass the state of our store */}
@@ -26,6 +30,7 @@ function App(props) {
         onStatusChange={onStatusChange}
         onCreateTask={onCreateTask}
         onRemoveTask={onRemoveTask}
+        onChangeTask={onChangeTask}
       />
     </>
   );
